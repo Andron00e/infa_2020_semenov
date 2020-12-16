@@ -1,4 +1,3 @@
-
 import pygame
 import random
 import copy
@@ -29,6 +28,7 @@ different_shapes=len(list_of_tetris)
 def set_to_the_beginning():
     return  int(dimension[1]//2),  0, 0
 
+
 def check_and_delete_bottom_blocks_and_increase_count_and_y_speed(bottom_blocks, count, y_speed):
     for i in range(dimension[0]):
         index = 0
@@ -42,12 +42,14 @@ def check_and_delete_bottom_blocks_and_increase_count_and_y_speed(bottom_blocks,
                 y_speed += 0.1
     return bottom_blocks, count, y_speed
 
+
 def print_initial_message(screen):
     font = pygame.font.SysFont('TimesNewRoman', blocksize * 3, True, False)
     text5 = font.render("Press Enter", True, BLUE)
     text6 = font.render("to continue", True, BLUE)
     screen.blit(text5, [int(50 * (blocksize / 25)), int(150 * (blocksize / 25))])
     screen.blit(text6, [int(50 * (blocksize / 25)), int(250 * (blocksize / 25))])
+    
 
 def print_scoreboard(screen, count):
     font = pygame.font.SysFont('TimesNewRoman', blocksize, True, False)
@@ -59,6 +61,7 @@ def print_scoreboard(screen, count):
     screen.blit(text2, [blocksize * (dimension[1] + 1), blocksize * 4])
     screen.blit(text3, [blocksize * (dimension[1] + 1), blocksize * 7])
     screen.blit(text4, [blocksize * (dimension[1] + 1), blocksize * 10])
+    
 
 def draw_background(screen):
     screen.fill(WHITE)
@@ -75,6 +78,7 @@ def setup_drops(tetris_lookahead):
     tetris_lookahead.pop(0)
     tetris_future = tetris(list_of_tetris[tetris_lookahead[0]])
     return tetris_lookahead, tetris_piece, tetris_future
+
 
 class bottom:
 
@@ -104,6 +108,7 @@ class bottom:
             for k in range(0,i):
                 self.blocks[j][i-k]=self.blocks[j][i-1-k]
             self.blocks[j][0] = 0
+            
 
 class tetris:
 
@@ -232,6 +237,7 @@ def update_x_and_y_coordinates_after_checking_collision(tetris_piece,x_coord, y_
     y_coord_for_showing = int(y_coord // 1)
     return x_coord, y_coord, y_coord_for_showing
 
+
 def main():
 
     pygame.init()
@@ -265,7 +271,7 @@ def main():
 
                     while not dead:
                         for event in pygame.event.get():  
-                            done, dead, tetris_piece, y_coord, x_speed, y_speed=input_treatment(event,done, dead,tetris_piece,x_coord, y_coord, y_coord_for_showing,  x_speed, y_speed, bottom_blocks)
+                            done, dead, tetris_piece, y_coord, x_speed,y_speed=input_treatment(event,done, dead,tetris_piece,x_coord, y_coord, y_coord_for_showing,  x_speed, y_speed, bottom_blocks)
 
                         x_coord, y_coord, y_coord_for_showing= update_x_and_y_coordinates_after_checking_collision(tetris_piece,x_coord,y_coord,y_coord_for_showing,x_speed,y_speed,bottom_blocks)
 
